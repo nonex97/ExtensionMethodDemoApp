@@ -25,6 +25,12 @@ namespace ExtensionMethodDemo
                 OpenShades(SetTemperature(TurnOnAir(room),23));
             */
 
+            PersonModel person = new PersonModel();
+            person.FirstName = "Neven";
+            person.LastName = "Grguric";
+
+            person.SetDefaultAge().PrintInfo();
+
             Console.ReadLine();
         }
     }
@@ -73,4 +79,31 @@ namespace ExtensionMethodDemo
             return room;
         }
     }
+
+    // Homework - Create the following chain using extension methods: person.SetDefaultAge().PrintInfo();
+
+    public class PersonModel
+    {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public int Age { get; set; }
+    }
+
+    public static class PersonExtension
+    {
+        public static PersonModel SetDefaultAge(this PersonModel person)
+        {
+            person.Age = 23;
+            return person;
+        }
+
+        public static void PrintInfo(this PersonModel person)
+        {
+            Console.WriteLine($"First name: {person.FirstName}");
+            Console.WriteLine($"Last name: {person.LastName}");
+            Console.WriteLine($"Age: {person.Age}");
+        }
+    }
+
+    
 }
